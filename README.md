@@ -18,7 +18,7 @@
 <br>
 
 <p align="center">
-  <img alt="dev.finances" src=".github/jobscalc.png" width="100%">
+  <img alt="dev.finances" src="https://raw.githubusercontent.com/rocketseat-education/maratona-discover-02/main/.github/jobscalc.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias
