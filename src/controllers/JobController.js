@@ -31,10 +31,11 @@ module.exports = {
     },
 
     save(req, res) {
+        const jobs = Job.get()
         // req.body = { name: 'job', 'daily-hours': '3', 'total-hours': '3' } //
-        const lastId = Job.data[Job.data.length - 1]?.id || 0;
+        const lastId = jobs[jobs.length - 1]?.id || 0;
 
-        Job.data.push({
+        jobs.push({
             id: lastId + 1,
             name: req.body.name,
             "daily-hours": req.body["daily-hours"],
