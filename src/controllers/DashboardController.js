@@ -5,21 +5,29 @@ const Profile = require('../model/Profile')
 module.exports = {
     index(req, res) {
         const jobs = Job.get();
-        const profile = Profile.get();    
+        const profile = Profile.get(); 
+        
+        let statusCount = {
+            progress: 0,
+            done: 0,
+            total: jobs.length
+        }
     
-            const updatedJobs = jobs.map((job) => {
-                //ajustes do job //
-                const remaining = JobUtils.remainingDays(job)
-                const status = remaining <= 0 ? 'done' : 'progress'
-            
-                return {
-                    ...job, // pegou tudo do objeto job lá de cima //
-                    remaining,
-                    status,
-                    budget: JobUtils.calculateBudget(job, profile["value-hour"])
-                }
-            })
+        const updatedJobs = jobs.map((job) => {
+            //ajustes do job //
+            const remaining = JobUtils.remainingDays(job)
+            const status = remaining <= 0 ? 'done' : 'progress' // definição do status //
 
-            return res.render("index", {jobs: updatedJobs, profile: profile})
+            statusCount[status] += 1; // somando a quantidade de status // 
+            
+            return {
+                ...job, // pegou tudo do objeto job lá de cima //
+                remaining,
+                status,
+                budget: JobUtils.calculateBudget(job, profile["value-hour"])
+            }
+        })
+
+        return res.render("index", {jobs: updatedJobs, profile: profile, statusCount: statusCount})
     },
 };
