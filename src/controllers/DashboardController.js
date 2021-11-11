@@ -20,6 +20,6 @@ module.exports = {
                 }
             })
 
-            return res.render("index", {jobs: updatedJobs})
-    }
-}
+            return res.render("index", {jobs: updatedJobs, profile: profile})
+    },
+};
