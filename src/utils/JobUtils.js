@@ -17,7 +17,7 @@ module.exports = {
         const dayInMs = 1000 * 60 * 60 * 24
     
         // calculo de dias restantes //
-        const dayDiff = Math.floor(timeDiffInMs/dayInMs) // Math.floor arredonda para menos //
+        const dayDiff = Math.ceil(timeDiffInMs/dayInMs) // Math ceil arredonda para cima //
     
         // restam x dias //
         return dayDiff
